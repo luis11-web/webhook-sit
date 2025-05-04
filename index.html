@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Webhook Admin Panel</title>
+    <title>Webhook Admin Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-image:url('144565.jpg'); 
+            background-image: url('144565.jpg');
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -34,7 +34,7 @@
 
         h1 {
             font-size: 26px;
-            color: #333;
+            color: #fff;
             margin-bottom: 10px;
             font-weight: 600;
         }
@@ -53,7 +53,7 @@
 
         .message {
             font-size: 14px;
-            color: #555;
+            color: #ddd;
             margin-bottom: 20px;
         }
 
@@ -82,6 +82,24 @@
         input:focus, textarea:focus {
             border-color: #7289da;
             outline: none;
+        }
+
+        .emoji-picker {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .emoji-picker span {
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .emoji-picker span:hover {
+            transform: scale(1.2);
         }
 
         button {
@@ -116,14 +134,28 @@
     <div class="container">
         <h1>🚀 Send to Discord!</h1>
         <div class="announcement">
-            Easily send an image or video via Webhook!
+            🌟 Easily send an image or video via Webhook! 🌟
         </div>
 
-        <p class="message">Fill in your message, image, or video link, then the Webhook URL.</p>
+        <p class="message">📝 Fill in your message, image, or video link, then the Webhook URL.</p>
 
         <div class="input-group">
             <textarea id="message" rows="3" placeholder="✉️ Your message"></textarea>
         </div>
+
+        <!-- Emoji Picker -->
+        <div class="emoji-picker">
+            <span onclick="addEmoji('😀')">😀</span>
+            <span onclick="addEmoji('😂')">😂</span>
+            <span onclick="addEmoji('😍')">😍</span>
+            <span onclick="addEmoji('😎')">😎</span>
+            <span onclick="addEmoji('👍')">👍</span>
+            <span onclick="addEmoji('🎉')">🎉</span>
+            <span onclick="addEmoji('🔥')">🔥</span>
+            <span onclick="addEmoji('❤️')">❤️</span>
+            <span onclick="addEmoji('🚀')">🚀</span>
+        </div>
+
         <div class="input-group">
             <input type="text" id="image-url" placeholder="🖼️ Image URL" />
         </div>
@@ -137,11 +169,16 @@
         <button onclick="sendData()">
             <span>Send</span> <span>🚀</span>
         </button>
-        <p class="message">< / > Developed By  Luis.</p>
+        <p class="message">💻 Developed By Luis.</p>
         <p class="alert" id="alert-message"></p>
     </div>
 
     <script>
+        function addEmoji(emoji) {
+            const messageInput = document.getElementById('message');
+            messageInput.value += emoji;
+        }
+
         function sendData() {
             const webhookURL = document.getElementById('webhook-url').value.trim();
             const imageUrl = document.getElementById('image-url').value.trim();
@@ -149,7 +186,7 @@
             const message = document.getElementById('message').value.trim();
 
             if (!webhookURL || !message) {
-                document.getElementById('alert-message').innerText = "Please complete the required fields!";
+                document.getElementById('alert-message').innerText = "⚠️ Please complete the required fields!";
                 return;
             }
 
